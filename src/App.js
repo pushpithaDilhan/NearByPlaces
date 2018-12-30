@@ -1,25 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Search from './components/Search';
+import ResultList from './components/ResultList';
+import SideList from './components/SideList';
 import './App.css';
 
 class App extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+      results:{},
+      saved:["Hello"]
+    }
+  }
+
+  updateState(value){
+    this.setState({
+      results:value
+    })
+  }
+
+  addSaved(value){
+    const places = this.state.saved.concat(value);
+    this.setState({
+      saved:places
+    })   
+    console.log(this.state.saved); 
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <Search callUpdate={this.updateState.bind(this)} />
+        <div className="row">
+          <div className="col-md-8">
+            <ResultList resultPlaces={this.state.results}
+                        addToSaved={this.addSaved.bind(this)}
+            />
+          </div>
+          <div className="col-md-4">       
+            <SideList savedPlaces={this.state.saved} />     
+          </div>
+        </div>
       </div>
     );
   }
