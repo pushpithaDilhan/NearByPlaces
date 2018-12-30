@@ -1,5 +1,7 @@
 A simple Single Page Application that consists of a NodeJS backend to search near by places and save them in a side list. Implemented to learn the basic concepts of ReactJS.
 
+![Screenshot](screenshot.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
